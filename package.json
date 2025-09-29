@@ -1,0 +1,60 @@
+{
+  "name": "docstrings-remover",
+  "displayName": "Remove Docstrings",
+  "description": "Quickly removes docstrings from Python code.",
+  "version": "1.0.0",
+  "publisher": "René Coignard",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coignard"
+  },
+  "license": "MIT",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:docstrings-remover.removeDocstrings"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "docstrings-remover.removeDocstrings",
+        "title": "Remove Docstrings"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == python || notebookType == 'jupyter-notebook'",
+          "command": "docstrings-remover.removeDocstrings",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "docstrings-remover.removeDocstrings",
+        "key": "shift+backspace",
+        "mac": "shift+backspace",
+        "when": "editorTextFocus && (resourceLangId == python || notebookType == 'jupyter-notebook')"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.104.0",
+    "typescript": "^5.9.2",
+    "vsce": "^2.15.0"
+  }
+}
